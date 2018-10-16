@@ -1,5 +1,5 @@
 # Homework Assignments
-### All my homework assignments from CSCI-142
+### All my homework assignments from CSCI-142 (Java)
 #### Contains:
 - Homework 1: Basic Sorts (Introduction)
 - Homework 2: Linked Lists (Classes)

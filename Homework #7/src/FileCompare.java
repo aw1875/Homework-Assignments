@@ -89,6 +89,11 @@ public class FileCompare {
                 "There were " + lines + " lines of different length.");
     }
 
+    /**
+     * Main function that sets f1 and f2 to the inputted files which is read from the command line and calls charByChar function
+     * @param String[]
+     * @param args
+     */
     public static void main(String[] args) {
         File f1 = new File(args[0]);
         File f2 = new File(args[1]);

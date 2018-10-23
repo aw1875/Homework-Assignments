@@ -8,3 +8,4 @@
 - Homework 5: JCF (Java Collection Framework)
 - Homework 6: Hash Map (Java Collection Framework)
 - Homework 7: File Compare (Exceptions, IO)
+- Homework 8: Graphs (Graphs)

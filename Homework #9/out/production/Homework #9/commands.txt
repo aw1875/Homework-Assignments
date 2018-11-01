@@ -1,0 +1,11 @@
+PrintGraph
+HasNode Bazzle
+Add Bazzle
+PrintGraph
+HasNode Bazzle
+Add Bar
+PrintNeighbors Foo
+AddNeighbor Foo CS1
+PrintNeighbors Foo
+HasNode Foo
+Quit

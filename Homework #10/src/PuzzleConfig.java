@@ -5,10 +5,11 @@ public class PuzzleConfig implements Configuration {
 
     /**
      * Take in a file and construct the initial puzzle from it.
+     *
      * @param filename - file containing puzzle
      */
-    public PuzzleConfig (String filename) {
-        int board [][] = new int[9][9];
+    public PuzzleConfig(String filename) {
+        int board[][] = new int[9][9];
         int counter = 0;
         try {
             BufferedReader bf = new BufferedReader(new FileReader(filename));
@@ -23,15 +24,7 @@ public class PuzzleConfig implements Configuration {
                     }
                 }
                 counter++;
-            }/*
-            String resultBoard = "";
-            for (int i = 0; i < board.length; i++) {
-                for (int j = 0; j < board[i].length; j++) {
-                    resultBoard += board[i][j] + " ";
-                }
-                System.out.println(resultBoard);
-                resultBoard = "";
-            }*/
+            }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
             System.out.println("Please check the current directory.");
@@ -40,12 +33,20 @@ public class PuzzleConfig implements Configuration {
         }
     }
 
-    public PuzzleConfig (PuzzleConfig config) {
+    public PuzzleConfig(PuzzleConfig config) {
 
     }
 
     public String toString() {
-        return super.toString();
+        String result = "";
+        for (int i = 0; i < p1.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                result += board[i][j] + " ";
+            }
+            System.out.println(result);
+            result = "";
+        }
+        return result;
     }
 
 
@@ -64,7 +65,7 @@ public class PuzzleConfig implements Configuration {
         return false;
     }
 
-    public static void main (String [] args) {
+    public static void main(String[] args) {
         PuzzleConfig p1 = new PuzzleConfig("src/b1.txt");
 
 

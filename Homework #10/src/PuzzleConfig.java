@@ -144,7 +144,7 @@ public class PuzzleConfig implements Configuration {
         Backtracker b1 = new Backtracker(false);
         Optional<Configuration> solution = b1.solve(puzzle);
         if (!solution.isPresent()) {
-            System.out.println("No Solution");
+            System.out.println("\nNo Solution");
         } else {
             System.out.println("\nSolution Found: \n\n" + solution.get());
         }

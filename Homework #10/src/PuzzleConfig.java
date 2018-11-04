@@ -140,11 +140,11 @@ public class PuzzleConfig implements Configuration {
      * @param args - command line arguments.
      */
     public static void main(String[] args) {
-        PuzzleConfig puzzle = new PuzzleConfig("src/b1.txt");
+        PuzzleConfig puzzle = new PuzzleConfig(args[0]);
         Backtracker b1 = new Backtracker(false);
         Optional<Configuration> solution = b1.solve(puzzle);
-        if (solution.isPresent()) {
-            System.out.println("No solution found.");
+        if (!solution.isPresent()) {
+            System.out.println("No Solution");
         } else {
             System.out.println("\nSolution Found: \n\n" + solution.get());
         }

@@ -9,3 +9,5 @@
 - Homework 6: Hash Map (Java Collection Framework)
 - Homework 7: File Compare (Exceptions, IO)
 - Homework 8: Graphs (Graphs)
+- Homework 9: Incomplete
+- Homeworl 10: Sudoku (Backtracking)

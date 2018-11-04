@@ -13,8 +13,8 @@ public class PuzzleConfig implements Configuration {
      * @param filename - file containing puzzle.
      */
     public PuzzleConfig(String filename) {
-        int counter = 0;
         try {
+            int counter = 0;
             BufferedReader bf = new BufferedReader(new FileReader(filename));
             String input;
             while ((input = bf.readLine()) != null) {

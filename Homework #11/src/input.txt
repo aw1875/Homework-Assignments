@@ -1,0 +1,12 @@
+GOL-2400, Global Village, 55, 200
+GOL-2400, H-Lot, 45, 300
+GOL-2400, SAU, 68, 350
+SAU, S-Lot, 23, 200
+SAU, B-Lot, 15, 400
+SAU, Gleason, 23, 100
+Gleason, S-Lot, 12, 50
+B-Lot, S-Lot, 10, 500
+Gleason, SAU, 25, 60
+B-Lot, GOL-2400, 45, 300
+B-Lot, Carlson, 35, 120
+Carlson, Gleason, 15, 95

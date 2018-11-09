@@ -7,19 +7,20 @@ public class ShortestDistance {
 
     /**
      * Take in file and construct graph
+     *
      * @param filename - file containing graph info
      */
-    public ShortestDistance (String filename) {
+    public ShortestDistance(String filename) {
         try {
             BufferedReader bf = new BufferedReader(new FileReader(filename));
             String input;
 
             while ((input = bf.readLine()) != null) {
-                String currLine [] = input.split(",");
+                String currLine[] = input.split(",");
                 Node currNode = new Node(currLine[0].trim());
                 if (!graph.containsKey(currLine[0].trim())) {
                     currNode.addNeighbor(new Node(currLine[1].trim()), Integer.parseInt(currLine[3].trim()));
-                    graph.put(currLine[0].trim(), currNode );
+                    graph.put(currLine[0].trim(), currNode);
                 } else {
                     graph.get(currLine[0]).addNeighbor(new Node(currLine[1].trim()), Integer.parseInt(currLine[3].trim()));
                 }
@@ -39,17 +40,17 @@ public class ShortestDistance {
 
     /**
      * Will return graph constructed
+     *
      * @return constructed graph
      */
     public Map<String, Node> getGraph() {
-        Map<String, Node> m1 = new HashMap<>();
-        // Return graph
-        return m1;
+        return graph;
     }
 
     /**
      * Will print the graph
-     * @return FILL
+     *
+     * @return result - the graph as a string
      */
     public String toString() {
         String result = "";
@@ -61,11 +62,13 @@ public class ShortestDistance {
     }
 
     /**
-     * Get arguments from command line, construct graph, print graph, and perform Dijkstra algorithm for shortest distance
+     * Get arguments from command line, construct graph, print graph, and perform Dijkstra's algorithm for shortest distance
+     *
      * @param args - command line arguements
      */
-    public static void main (String [] args) {
-        ShortestDistance test = new ShortestDistance("src/input.txt");
-        System.out.println(test.toString());
+    public static void main(String[] args) {
+        ShortestDistance sd = new ShortestDistance(args[0]);
+        System.out.println(sd.toString());
+        Graph.displayShortestPath(sd.getGraph(), args[1], args[2]);
     }
 }

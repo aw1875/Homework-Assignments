@@ -7,6 +7,7 @@ public class QuickestTime {
 
     /**
      * Take in file and construct graph
+     *
      * @param filename - file containing graph info
      */
     public QuickestTime(String filename) {
@@ -15,11 +16,11 @@ public class QuickestTime {
             String input;
 
             while ((input = bf.readLine()) != null) {
-                String currLine [] = input.split(",");
+                String currLine[] = input.split(",");
                 Node currNode = new Node(currLine[0].trim());
                 if (!graph.containsKey(currLine[0].trim())) {
                     currNode.addNeighbor(new Node(currLine[1].trim()), Integer.parseInt(currLine[2].trim()));
-                    graph.put(currLine[0].trim(), currNode );
+                    graph.put(currLine[0].trim(), currNode);
                 } else {
                     graph.get(currLine[0]).addNeighbor(new Node(currLine[1].trim()), Integer.parseInt(currLine[2].trim()));
                 }
@@ -38,17 +39,17 @@ public class QuickestTime {
 
     /**
      * Will return graph constructed
+     *
      * @return constructed graph
      */
     public Map<String, Node> getGraph() {
-        Map<String, Node> m1 = new HashMap<>();
-        // Return graph
-        return m1;
+        return graph;
     }
 
     /**
      * Will print the graph
-     * @return FILL
+     *
+     * @return result - the graph as a string
      */
     public String toString() {
         String result = "";
@@ -60,11 +61,13 @@ public class QuickestTime {
     }
 
     /**
-     * Get arguments from command line, construct graph, print graph, and perform Dijkstra algorithm for quickest time
+     * Get arguments from command line, construct graph, print graph, and perform Dijkstra's algorithm for quickest time
+     *
      * @param args - command line arguments
      */
-    public static void main (String [] args) {
-        QuickestTime test = new QuickestTime("src/input.txt");
-        System.out.println(test.toString());
+    public static void main(String[] args) {
+        QuickestTime qt = new QuickestTime(args[0]);
+        System.out.println(qt.toString());
+        Graph.displayShortestPath(qt.getGraph(), args[1], args[2]);
     }
 }

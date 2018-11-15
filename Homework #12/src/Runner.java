@@ -63,7 +63,7 @@ public class Runner extends Thread {
      * @param args - command line arguments
      */
     public static void main (String [] args) {
-        String file_name = "src/t1.txt";
+        String file_name = args[0];
 
         // Read in file and create Runner threads
         try {

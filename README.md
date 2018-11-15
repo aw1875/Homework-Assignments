@@ -12,3 +12,4 @@
 - Homework 9: Incomplete
 - Homework 10: Sudoku (Backtracking)
 - Homework 11: Shortest Distance & Quickest Time (Dijkstra's Algorithm)
+- Homework 12: Running Race (Threads)

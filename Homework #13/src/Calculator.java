@@ -1,78 +1,98 @@
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.layout.*;
 
-
 public class Calculator extends Application {
 
+    // Create array for buttons to make creating easier
+    private String[] buttons = new String[]{
+            "1", "2", "3", "+",
+            "4", "5", "6", "-",
+            "7", "8", "9", "*",
+            "Enter", "0", "Clear", "//"
+    };
+
+    /**
+     * Setup calculator step by step. Create BorderPane, then label for result then buttons
+     * @param stage
+     */
     public void start(Stage stage) {
-        Button btn1 = new Button("1");
-        Button btn2 = new Button("2");
-        Button btn3 = new Button("3");
-        Button plus = new Button("+");
-        Button btn4 = new Button("4");
-        Button btn5 = new Button("5");
-        Button btn6 = new Button("6");
-        Button minus = new Button("-");
-        Button btn7 = new Button("7");
-        Button btn8 = new Button("8");
-        Button btn9 = new Button("9");
-        Button mulitply = new Button("*");
-        Button enter = new Button("Enter");
-        Button btn0 = new Button("0");
-        Button clear = new Button("Clear");
-        Button divide = new Button("//");
 
+        // Create BorderPane
+        BorderPane layout = new BorderPane();
 
-        TextField t1 = new TextField();
-        t1.setPrefHeight(50);
-        t1.setFont(Font.font("Verdana", 30));
+        // Create result label
+        Label result = new Label("0");
+        result.setFont(new Font("Verdana", 50));
+        result.setMaxHeight(70);
+        result.setMinHeight(70);
+        result.setMaxWidth(500);
+        result.setMinWidth(500);
+        result.setAlignment(Pos.CENTER);
 
+        // Create TilePane for buttons
+        TilePane buttonPane = new TilePane();
 
-        TilePane tp1 = new TilePane();
-        tp1.setAlignment(Pos.CENTER);
-        tp1.setPrefHeight(350);
-        tp1.setPrefWidth(400);
-        tp1.setPrefRows(4);
-        tp1.setPrefColumns(4);
+        // Create buttons
+        for (int i = 0; i < buttons.length; i++) {
+            Button newButton = new Button(buttons[i]);
 
-        tp1.getChildren().add(btn1);
-        tp1.getChildren().add(btn2);
-        tp1.getChildren().add(btn3);
-        tp1.getChildren().add(plus);
-        tp1.getChildren().add(btn4);
-        tp1.getChildren().add(btn5);
-        tp1.getChildren().add(btn6);
-        tp1.getChildren().add(minus);
-        /*g1.add(btn7, 0,2);
-        g1.add(btn8, 1,2);
-        g1.add(btn9, 2,2);
-        g1.add(mulitply, 3,2);
-        g1.add(enter, 0,3);
-        g1.add(btn0, 1,3);
-        g1.add(clear, 2,3);
-        g1.add(divide, 3,3);*/
+            // Create event handlers
+            newButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    if (result.getText().equals("0")) {
+                        result.setText(newButton.getText());
+                    } else {
+                        if (newButton.getText().equals("+") || newButton.getText().equals("-") || newButton.getText().equals("*") || newButton.getText().equals("//")) {
+                            result.setText(result.getText() + " " + newButton.getText() + " ");
+                        } else if (newButton.getText().equals("Enter")) {
+                            String[] equation;
+                            equation = result.getText().split(" ");
+                            result.setText(String.valueOf(calculate(Integer.valueOf(equation[0]), Integer.valueOf(equation[2]), equation[1])));
+                        } else if (newButton.getText().equals("Clear")) {
+                            result.setText("0");
+                        } else {
+                            result.setText(result.getText() + newButton.getText());
+                        }
+                    }
+                }
+            });
 
-        BorderPane b1 = new BorderPane();
-        b1.setTop(t1);
-        b1.setCenter(tp1);
+            // Set height and width so it doesn't change
+            newButton.setMaxWidth(125);
+            newButton.setMinWidth(125);
+            newButton.setMaxHeight(100);
+            newButton.setMinHeight(100);
 
+            // Add new button to buttonPane
+            buttonPane.getChildren().add(newButton);
+        }
 
-        Scene scene = new Scene(b1);
+        // Setup layout
+        layout.setTop(result);
+        layout.setCenter(buttonPane);
 
-        // Set size
-        stage.setMinWidth(400);
-        stage.setMaxWidth(400);
-        stage.setMinHeight(400);
-        stage.setMaxHeight(400);
+        // Scene setup
+        Scene scene = new Scene(layout);
 
-        stage.setTitle( "JavaFX ButtonDemo" );
-        stage.setScene( scene );
+        // Stage setup
+        stage.setTitle("Simple Calculator");
+        stage.setScene(scene);
+
+        // Set height and width and take away ability to resize
+        stage.setHeight(500);
+        stage.setWidth(500);
+        stage.setResizable(false);
+
+        // Show stage
         stage.show();
     }
 
@@ -82,8 +102,7 @@ public class Calculator extends Application {
      */
     @Override
     public void stop() {
-
-        System.out.println( "stopping " + this.getClass().getSimpleName() );
+        System.out.println("stopping " + this.getClass().getSimpleName());
     }
 
     /**
@@ -91,8 +110,21 @@ public class Calculator extends Application {
      *
      * @param args not used
      */
-    public static void main( String[] args ) {
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
 
-        Application.launch( args );
+    public int calculate(int i1, int i2, String operand) {
+        if (operand.equals("+")) {
+            return Math.addExact(i1, i2);
+        } else if (operand.equals("-")) {
+            return Math.subtractExact(i1, i2);
+        } else if (operand.equals("*")) {
+            return Math.multiplyExact(i1, i2);
+        } else if (operand.equals("//")) {
+            return Math.floorDiv(i1, i2);
+        } else {
+            return 0;
+        }
     }
 }

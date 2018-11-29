@@ -27,6 +27,7 @@ public class Calculator extends Application {
 
     /**
      * Setup calculator step by step. Create BorderPane, then label for result then buttons
+     *
      * @param stage
      */
     public void start(Stage stage) {
@@ -124,6 +125,14 @@ public class Calculator extends Application {
         Application.launch(args);
     }
 
+    /**
+     * Do the calculation for the calculate part
+     *
+     * @param i1      - first integer
+     * @param i2      - second integer
+     * @param operand - the operation to be completed
+     * @return completed math
+     */
     public int calculate(int i1, int i2, String operand) {
         if (operand.equals("+")) {
             return Math.addExact(i1, i2);

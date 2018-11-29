@@ -1,3 +1,9 @@
+/**
+ * file: Calculator.java
+ * language: java
+ * author: Adam Wolf
+ */
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -29,7 +35,7 @@ public class Calculator extends Application {
         BorderPane layout = new BorderPane();
 
         // Create result label
-        Label result = new Label("0");
+        Label result = new Label("");
         result.setFont(new Font("Verdana", 50));
         result.setMaxHeight(70);
         result.setMinHeight(70);
@@ -48,8 +54,12 @@ public class Calculator extends Application {
             newButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    if (result.getText().equals("0")) {
-                        result.setText(newButton.getText());
+                    if (result.getText().equals("")) {
+                        if (newButton.getText().equals("Enter") || newButton.getText().equals("Clear")) {
+                            result.setText("0");
+                        } else {
+                            result.setText(newButton.getText());
+                        }
                     } else {
                         if (newButton.getText().equals("+") || newButton.getText().equals("-") || newButton.getText().equals("*") || newButton.getText().equals("//")) {
                             result.setText(result.getText() + " " + newButton.getText() + " ");
@@ -58,7 +68,7 @@ public class Calculator extends Application {
                             equation = result.getText().split(" ");
                             result.setText(String.valueOf(calculate(Integer.valueOf(equation[0]), Integer.valueOf(equation[2]), equation[1])));
                         } else if (newButton.getText().equals("Clear")) {
-                            result.setText("0");
+                            result.setText("");
                         } else {
                             result.setText(result.getText() + newButton.getText());
                         }
